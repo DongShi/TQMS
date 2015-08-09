@@ -7,11 +7,11 @@
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
-    <link href="css/animations.css" rel="stylesheet">
+    <link href="css/pivot.css" rel="stylesheet">
 
     <script src="lib/pivLib/jquery.js"></script>
     <script src="lib/pivLib/jquery-ui.js"></script>
-    <script src="lib/pivLib/angular.js"></script>
+    <!--<script src="lib/pivLib/angular.js"></script>-->
     <script src="lib/pivLib/pivot.js"></script>
 
 
@@ -27,7 +27,7 @@
     </section>
 
 
-    <section class="alert-warning">
+    <section class="pivot">
 
          <div class="container-fluid">
          <div class="row">
@@ -47,7 +47,7 @@
 
     $(document).ready(function(){
 
-        $("#pivContainer").pivot(
+        $("#pivContainer").pivotUI(
                 [
                     {color: "blue", shape: "circle"},
                     {color: "red", shape: "triangle"}
