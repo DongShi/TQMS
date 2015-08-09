@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>pivot table</title>
+
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+
+    <script src="lib/pivLib/jquery.js"></script>
+    <script src="lib/pivLib/jquery-ui.js"></script>
+    <script src="lib/pivLib/angular.js"></script>
+    <script src="lib/pivLib/pivot.js"></script>
+
+
+
+</head>
+<body>
+
+
+    <section class="alert-warning">
+
+        demo for grid and graph display.
+
+    </section>
+
+
+    <section class="alert-warning">
+
+         <div class="container-fluid">
+         <div class="row">
+             <div class="col-lg-offset-1 col-md-10" id = 'pivContainer'> viz here</div>
+
+
+         </div>
+         </div>
+
+
+    </section>
+
+
+</body>
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#pivContainer").pivot(
+                [
+                    {color: "blue", shape: "circle"},
+                    {color: "red", shape: "triangle"}
+                ],
+                {
+                    rows: ["color"],
+                    cols: ["shape"]
+                }
+        );
+
+
+
+    });
+
+</script>
+
+</html>
