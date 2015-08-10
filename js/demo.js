@@ -4,7 +4,7 @@
  * Date: 8/4/2015 1:50 PM
  * Copyright (c) 2015 MicroStrategy Incorporated. All rights reserved.
  */
-var demoApp = angular.module('demoApp', ['demoService']);
+var demoApp = angular.module('demoApp', ['demoService', 'ui.grid']);
 
 demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http) {
 
@@ -14,6 +14,7 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
         {message: "warning1", type: "info"},
         {message: "attention", type: "info"}
     ];
+
     $scope.closeAlert = function (i) {
         i = Math.max(0, i);
         i = Math.min($scope.alerts.length - 1, i);
@@ -21,7 +22,6 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
             $scope.alerts.splice(i, 1);
 
     };
-
 
     $scope.updateData = function (displayMode) {
 
@@ -31,7 +31,7 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
         var parseURL = function (displayMode) {
             switch (displayMode) {
                 case 'grid':
-                    _URL = "asset/phones/phones.json";
+                    _URL = "asset/phones/grid-data.json";
                     break;
 
                 case 'graph':
@@ -46,8 +46,13 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
         };
 
         var update = function () {
+
+            _URL = parseURL(displayMode) || _URL;
+
             return $http.get(_URL).success(function (data) {
-                $scope[dataTag] = data;
+
+                var resultData = data;
+                $scope[dataTag] = resultData;
 
             }).error(function () {
 

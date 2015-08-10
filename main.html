@@ -24,10 +24,12 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
+    <link href="css/ui-grid.css" rel="stylesheet">
 
 
     <script src="lib/jquery.js"></script>
     <script src="lib/angular.js"></script>
+    <script src="lib/uiGrid/ui-grid.js"></script>
     <!--<script src="lib/angular-route.js"></script>-->
     <!--<script src="lib/angular-resource.js"></script>-->
     <!--<script src="js/services.js"></script>-->
@@ -83,9 +85,7 @@
 
 
         <!--grid display example-->
-        <div class="col-md-offset-1 col-md-10" display-grid>
-
-
+        <div class="col-md-offset-1 col-md-10 ui-grid" ui-grid= "{data: gridData}">
         </div>
 
         <!--graph display example-->
