@@ -4,7 +4,7 @@
  * Date: 8/4/2015 1:50 PM
  * Copyright (c) 2015 MicroStrategy Incorporated. All rights reserved.
  */
-var demoApp = angular.module('demoApp', ['demoService', 'ui.grid']);
+var demoApp = angular.module('demoApp', ['demoService', 'ui.grid', 'nvd3ChartDirectives']);
 
 demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http) {
 
@@ -35,7 +35,7 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
                     break;
 
                 case 'graph':
-                    _URL = "asset/phones/phones.json";
+                    _URL = "asset/phones/graph-data.json";
                     break;
 
                 case 'json':

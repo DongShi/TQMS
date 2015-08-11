@@ -25,11 +25,21 @@
     <link href="css/app.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
     <link href="css/ui-grid.css" rel="stylesheet">
+    <link href="css/nv.d3.css" rel="stylesheet">
 
 
     <script src="lib/jquery.js"></script>
     <script src="lib/angular.js"></script>
+
+        <!--grid library-->
     <script src="lib/uiGrid/ui-grid.js"></script>
+
+         <!--graph library-->
+    <script src="lib/d3/d3.js"></script>
+    <script src="lib/d3/nv.d3.js"></script>
+    <script src="lib/d3/angularjs-nvd3-directives.js"></script>
+
+
     <!--<script src="lib/angular-route.js"></script>-->
     <!--<script src="lib/angular-resource.js"></script>-->
     <!--<script src="js/services.js"></script>-->
@@ -69,14 +79,6 @@
 
         </div>
 
-        <!--simple directive transit examples-->
-        <div class="col-md-offset-1 col-md-10" simple-transit>
-
-            Welcome to Beijing!
-
-        </div>
-
-
         <!--simple directive, alert!-->
         <alert typex = alert.type  close = "closeAlert($index)" ng-repeat = "alert in alerts">
             {{alert.message}}
@@ -89,16 +91,29 @@
         </div>
 
         <!--graph display example-->
-        <div class="col-md-offset-1 col-md-10" display-graph>
+        <nvd3-cumulative-line-chart
+             class="col-md-offset-1 col-md-10"
+             data="graphData"
+             showXAxis="true"
+             showYAxis="true"
+             tooltips="true"
+             interactive="true"
+             style = "height: 400px"
+
+                >
+        </nvd3-cumulative-line-chart>
 
 
-        </div>
+        <!--&lt;!&ndash;simple directive pagination examples&ndash;&gt;-->
+        <!--<pagination num-pages = "tasks.pageCount" current-page = "tasks.currentPage" on-select-page = "sayHello(pageX)">-->
+        <!--</pagination>-->
 
+        <!--&lt;!&ndash;simple directive transit examples&ndash;&gt;-->
+        <!--<div class="col-md-offset-1 col-md-10" simple-transit>-->
 
-        <!--simple directive pagination examples-->
-        <pagination num-pages = "tasks.pageCount" current-page = "tasks.currentPage" on-select-page = "sayHello(pageX)">
-        </pagination>
+            <!--Welcome to Beijing!-->
 
+        <!--</div>-->
 
 
     </div>
@@ -114,55 +129,55 @@
 
 
 
-<hr>
-<h1> form testing </h1>
+<!--<hr>-->
+<!--<h1> form testing </h1>-->
 
-<div ng-controller="ExampleController">
-    <form name="form" class="css-form" novalidate>
-        Name:
-        <input type="text" ng-model="user.name" name="uName" required="" />
-        <br />
-        <div ng-show="form.$submitted || form.uName.$touched">
-            <div ng-show="form.uName.$error.required">Tell us your name.</div>
-        </div>
+<!--<div ng-controller="ExampleController">-->
+    <!--<form name="form" class="css-form" novalidate>-->
+        <!--Name:-->
+        <!--<input type="text" ng-model="user.name" name="uName" required="" />-->
+        <!--<br />-->
+        <!--<div ng-show="form.$submitted || form.uName.$touched">-->
+            <!--<div ng-show="form.uName.$error.required">Tell us your name.</div>-->
+        <!--</div>-->
 
-        E-mail:
-        <input type="email" ng-model="user.email" name="uEmail" required="" />
-        <br />
-        <div ng-show="form.$submitted || form.uEmail.$touched">
-            <span ng-show="form.uEmail.$error.required">Tell us your email.</span>
-            <span ng-show="form.uEmail.$error.email">This is not a valid email.</span>
-        </div>
+        <!--E-mail:-->
+        <!--<input type="email" ng-model="user.email" name="uEmail" required="" />-->
+        <!--<br />-->
+        <!--<div ng-show="form.$submitted || form.uEmail.$touched">-->
+            <!--<span ng-show="form.uEmail.$error.required">Tell us your email.</span>-->
+            <!--<span ng-show="form.uEmail.$error.email">This is not a valid email.</span>-->
+        <!--</div>-->
 
-        Gender:
-        <input type="radio" ng-model="user.gender" value="male" />male
-        <input type="radio" ng-model="user.gender" value="female" />female
-        <br />
-        <input type="checkbox" ng-model="user.agree" name="userAgree" required="" />
+        <!--Gender:-->
+        <!--<input type="radio" ng-model="user.gender" value="male" />male-->
+        <!--<input type="radio" ng-model="user.gender" value="female" />female-->
+        <!--<br />-->
+        <!--<input type="checkbox" ng-model="user.agree" name="userAgree" required="" />-->
 
-        I agree:
-        <input ng-show="user.agree" type="text" ng-model="user.agreeSign" required="" />
-        <br />
-        <div ng-show="form.$submitted || form.userAgree.$touched">
-            <div ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>
-        </div>
+        <!--I agree:-->
+        <!--<input ng-show="user.agree" type="text" ng-model="user.agreeSign" required="" />-->
+        <!--<br />-->
+        <!--<div ng-show="form.$submitted || form.userAgree.$touched">-->
+            <!--<div ng-show="!user.agree || !user.agreeSign">Please agree and sign.</div>-->
+        <!--</div>-->
 
-        <input type="button" ng-click="reset(form)" value="Reset" />
-        <input type="submit" ng-click="update(user)" value="Save" />
-    </form>
-    <pre>form = {{user | json}}</pre>
-    <pre>master = {{master | json}}</pre>
-</div>
+        <!--<input type="button" ng-click="reset(form)" value="Reset" />-->
+        <!--<input type="submit" ng-click="update(user)" value="Save" />-->
+    <!--</form>-->
+    <!--<pre>form = {{user | json}}</pre>-->
+    <!--<pre>master = {{master | json}}</pre>-->
+<!--</div>-->
 
-<hr>
-<h1> verification input form </h1>
+<!--<hr>-->
+<!--<h1> verification input form </h1>-->
 
-<form>
-    <input ng-model="model.compareTo">
-    <input ng-model="model.value" validate-equals="model.compareTo">
+<!--<form>-->
+    <!--<input ng-model="model.compareTo">-->
     <!--<input ng-model="model.value" validate-equals="model.compareTo">-->
+    <!--&lt;!&ndash;<input ng-model="model.value" validate-equals="model.compareTo">&ndash;&gt;-->
 
-</form>
+<!--</form>-->
 
 
 <!--<p> total number is <span ng-model="phones">{{phones.length}} </span></p>-->
