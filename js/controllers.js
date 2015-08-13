@@ -49,16 +49,28 @@ controllerModule.controller('PhoneListCtrl', ['$scope', '$http', 'Phone', functi
 //    });
 
 
-    $scope.phones = PhoneService.query1();
+    $scope.phones = PhoneService.getPhones();
+
+    var ins = new PhoneService();
+
     $scope.orderProp = "age";
 }]);
 
 
-controllerModule.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http', 'Phone', function($scope, $routeParams, $http, PhoneService){
+controllerModule.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http', 'Phone', '$location', function($scope, $routeParams, $http, PhoneService, $location){
     $scope.phoneId = $routeParams.phoneId;
     $scope.phone = PhoneService.get({phoneId: $routeParams.phoneId}, function(phone) {
         $scope.mainImageUrl = phone.images[0];
-    });
+    }, function() {
+            $location.url('/phones');
+        }
+    ).otherwise(function() {
+            window.alert(".......");
+        }
+    );
+
+
+
 
 
 

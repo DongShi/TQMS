@@ -67,6 +67,21 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
         window.alert(message);
     }
 
+
+    //select testing
+    $scope.values = [{
+        id: 1,
+        label: 'aLabel',
+        subItem: { name: 'aSubItem' }
+    }, {
+        id: 2,
+        label: 'bLabel',
+        subItem: { name: 'bSubItem' }
+    }];
+
+    $scope.selected = $scope.values[0];
+
+
 }]);
 
 

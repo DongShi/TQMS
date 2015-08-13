@@ -31,6 +31,10 @@
     <script src="lib/jquery.js"></script>
     <script src="lib/angular.js"></script>
 
+
+            <!--routing support-->
+
+
         <!--grid library-->
     <script src="lib/uiGrid/ui-grid.js"></script>
 
@@ -39,6 +43,8 @@
     <script src="lib/d3/nv.d3.js"></script>
     <script src="lib/d3/angularjs-nvd3-directives.js"></script>
 
+    <script src="js/services.js"></script>
+    <script src="js/demo.js"></script>
 
     <!--<script src="lib/angular-route.js"></script>-->
     <!--<script src="lib/angular-resource.js"></script>-->
@@ -46,9 +52,6 @@
     <!--<script src="js/controllers.js"></script>-->
     <!--<script src="js/filters.js"></script>-->
     <!--<script src="js/app.js"></script>-->
-
-    <script src="js/services.js"></script>
-    <script src="js/demo.js"></script>
 
 
 </head>
@@ -123,6 +126,14 @@
 
 
 
+
+
+<input type="checkbox" ng-model="user.role" ng-true-value = "'admin'" ng-false-value = "'basic'">  {{user.role}}
+
+<select ng-options="item as item.label for item in values" ng-model="selected">
+<!--cc <option value ="" style = "display: none"> -- no selection --</option>-->
+
+</select>
 
 
 

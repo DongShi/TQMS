@@ -18,7 +18,7 @@ var phonecatService = angular.module('phonecatService', ['ngResource']);
 phonecatService.factory("Phone", ['$resource', function($resource){
 
     return $resource('asset/phones/:phoneId.json', {}, {
-        query1: {
+        getPhones: {
             method: 'GET',
             params: {phoneId: 'phones'},
             isArray: true
