@@ -4,7 +4,7 @@
  * Date: 8/4/2015 1:50 PM
  * Copyright (c) 2015 MicroStrategy Incorporated. All rights reserved.
  */
-var demoApp = angular.module('demoApp', ['demoService', 'ui.grid', 'nvd3ChartDirectives']);
+var demoApp = angular.module('demoApp', ['demoService', 'ui.grid', 'nvd3']);
 
 demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http) {
 
@@ -65,7 +65,7 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
 
     $scope.sayHello = function (message) {
         window.alert(message);
-    }
+    };
 
 
     //select testing
@@ -81,6 +81,9 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
 
     $scope.selected = $scope.values[0];
 
+
+    
+    
 
 }]);
 
@@ -244,3 +247,108 @@ demoApp.directive('alert', function () {
 
 });
 
+
+
+
+demoApp.controller('graphViewController', ['$scope', function($scope){
+
+    //Axis formatting
+    //todo expose options so users could customize their own formatting string.
+    $scope.axisFormatFactory = function (type) {
+
+        switch (type) {
+
+            case '_Percent':
+                return function(d) {
+                    return d3.format(',.1%')(d);
+                };
+
+
+            case '_Date':
+                return function (d) {
+                    return d3.time.format('%x')(new Date(d));
+                };
+
+            case '_Money':
+                return function (d) {
+                    return d3.format('$,.2f')(d);
+                };
+
+            default :
+                return function (d) {
+                    return d;
+                };
+        }
+    };
+
+
+    $scope.yScaling = function() {
+        return function(d) {
+            return d[1] / 100;
+        }
+    };
+
+
+    $scope.graphTypes = [
+        'map', 'line_stack', 'bar_cluster', 'pie', 'scatter', 'bubble'
+    ];
+
+
+    $scope.options = {
+        chart: {
+            type: 'cumulativeLineChart',
+            height: 450,
+            margin : {
+                top: 20,
+                right: 20,
+                bottom: 60,
+                left: 65
+            },
+            x: function(d){ return d[0]; },
+            y: function(d){ return d[1]/100; },
+            average: function(d) { return d.mean/100; },
+
+            color: d3.scale.category10().range(),
+            transitionDuration: 300,
+            useInteractiveGuideline: true,
+            clipVoronoi: false,
+
+            xAxis: {
+                axisLabel: 'X Axis',
+                tickFormat: function(d) {
+                    return d3.time.format('%m/%d/%y')(new Date(d))
+                },
+                showMaxMin: false,
+                staggerLabels: true
+            },
+
+            yAxis: {
+                axisLabel: 'Y Axis',
+                tickFormat: function(d){
+                    return d3.format(',.1%')(d);
+                },
+                axisLabelDistance: 20
+            }
+        }
+    };
+
+}]);
+
+
+
+demoApp.directive('drawGraph', function() {
+       var linkFn = function(element, scope, attributes) {
+
+       };
+       return {
+          restrict: 'AE',
+          controller: 'graphViewController',
+          link: linkFn
+
+
+
+       };
+
+
+
+});
