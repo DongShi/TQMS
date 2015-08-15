@@ -97,3 +97,10 @@ ul.specs dt {
 h1 {
   border-bottom: 1px solid gray;
 }
+
+.angular-nvd3-chart-container {
+    display: inline;
+    float: left;
+    width: 33%;
+}
+
