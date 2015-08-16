@@ -282,15 +282,8 @@ demoApp.controller('graphViewController', ['$scope', function($scope){
     };
 
 
-    $scope.yScaling = function() {
-        return function(d) {
-            return d[1] / 100;
-        }
-    };
-
-
     $scope.graphTypes = [
-        'map', 'line_stack', 'bar_cluster', 'pie', 'scatter', 'bubble'
+        'lineChart', 'cumulativeLineChart', 'multiBarHorizontalChart', 'stackedAreaChart', 'scatter', 'pieChart'
     ];
 
 
@@ -316,7 +309,7 @@ demoApp.controller('graphViewController', ['$scope', function($scope){
             xAxis: {
                 axisLabel: 'X Axis',
                 tickFormat: function(d) {
-                    return d3.time.format('%m/%d/%y')(new Date(d))
+                    return d3.time.format('%m/%d/%y')(new Date(d));
                 },
                 showMaxMin: false,
                 staggerLabels: true
@@ -332,24 +325,47 @@ demoApp.controller('graphViewController', ['$scope', function($scope){
         }
     };
 
+
+    this.changeGraphType = function(type, obj) {
+        if (!!obj === false) {
+            obj = $scope.options;
+        }
+
+        if (obj.chart) {
+            obj.chart.type = type;
+        }
+    };
+
+
+    this.getGraphOptions = function(obj) {
+        obj = obj || {};
+        angular.merge(obj, $scope.options);
+        return obj;
+    };
 }]);
 
 
 
 demoApp.directive('drawGraph', function() {
-       var linkFn = function(element, scope, attributes) {
+       var linkFn = function(scope, element, attributes, controller) {
+           if (!!attributes.cType) {
+               controller.changeGraphType(attributes.cType);  //this will work
+
+
+//               scope.options = controller.getGraphOptions();
+//               controller.changeGraphType(attributes.cType, scope.options);
+           }
 
        };
+
        return {
+          scope: {},
+          template: '<nvd3 options ="options" data="graphData"> </nvd3>',
           restrict: 'AE',
+          replace: true,
           controller: 'graphViewController',
           link: linkFn
-
-
-
        };
-
-
 
 });
 

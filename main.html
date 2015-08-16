@@ -3,23 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>Google Phone Gallery</title>
-    <!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">-->
-    <!--<link rel="stylesheet" href="css/app.css">-->
-    <!--<link rel="stylesheet" href="css/animations.css">-->
 
-    <!--<script src="bower_components/jquery/dist/jquery.js"></script>-->
-    <!--<script src="bower_components/angular/angular.js"></script>-->
-    <!--<script src="bower_components/angular-animate/angular-animate.js"></script>-->
-    <!--<script src="bower_components/angular-route/angular-route.js"></script>-->
-    <!--<script src="bower_components/angular-resource/angular-resource.js"></script>-->
-    <!--<script src="js/app.js"></script>-->
-    <!--<script src="js/animations.js"></script>-->
-    <!--<script src="js/controllers.js"></script>-->
-    <!--<script src="js/filters.js"></script>-->
-    <!--<script src="js/services.js"></script>-->
-
-
-    <!--<link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">-->
+    <!--css classes-->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
@@ -27,6 +12,7 @@
     <link href="css/nv.d3.css" rel="stylesheet">
 
 
+    <!--base library-->
     <script src="lib/jquery.js"></script>
     <script src="lib/angular.js"></script>
 
@@ -42,6 +28,9 @@
     <script src="lib/d3/nv.d3.js"></script>
     <script src="lib/d3/angular-nvd3.js"></script>
     <script src = "lib/d3/angularjs-nvd3-directives.js" ></script>
+
+
+    <!--common: file uploader-->
     <script src = "lib/uploader/ng-file-upload.js" ></script>
 
 
@@ -120,35 +109,36 @@
 
 
 <!--graph display example-->
-
 <div ng-controller="graphViewController">
-
-
-    <!--<div nvd3-cumulative-line-chart-->
-
-    <!--class = "col-md-4"-->
-    <!--data="graphData"-->
-    <!--showXAxis="true"-->
-    <!--showYAxis="true"-->
-    <!--tooltips="true"-->
-    <!--showlegend="true"-->
-    <!--interactive="true"-->
-    <!--y = 'yScaling()'-->
-    <!--height="600"-->
-    <!--width="1000"-->
-    <!--useinteractiveguideline = 'true'-->
-    <!--xaxisstaggerlabels='true'-->
-    <!--xaxistickformat=axisFormatFactory('_Date')-->
-    <!--yaxistickformat=axisFormatFactory('_Percent')-->
-
-
-    <!--</div>-->
 
     <div class="angular-nvd3-chart-container" ng-repeat='type in graphTypes'>
         <nvd3 options="options" data="graphData" ></nvd3>
     </div>
+
 </div>
 
+
+
+
+<!--<div nvd3-cumulative-line-chart-->
+
+<!--class = "col-md-4"-->
+<!--data="graphData"-->
+<!--showXAxis="true"-->
+<!--showYAxis="true"-->
+<!--tooltips="true"-->
+<!--showlegend="true"-->
+<!--interactive="true"-->
+<!--y = 'yScaling()'-->
+<!--height="600"-->
+<!--width="1000"-->
+<!--useinteractiveguideline = 'true'-->
+<!--xaxisstaggerlabels='true'-->
+<!--xaxistickformat=axisFormatFactory('_Date')-->
+<!--yaxistickformat=axisFormatFactory('_Percent')-->
+
+
+<!--</div>-->
 
 
 

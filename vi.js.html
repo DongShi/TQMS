@@ -1,41 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="demoApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>pivot table</title>
-
-
+    <title>viz testing</title>
 
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
-    <link href="css/pivot.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
     <link href="css/ui-grid.css" rel="stylesheet">
     <link href="css/nv.d3.css" rel="stylesheet">
 
 
-
-
-    <script src="lib/pivLib/jquery.js"></script>
-    <script src="lib/pivLib/jquery-ui.js"></script>
-    <!--<script src="lib/pivLib/angular.js"></script>-->
-    <script src="lib/pivLib/pivot.js"></script>
-
-
-
+    <script src="lib/jquery.js"></script>
     <script src="lib/angular.js"></script>
+
+
+    <!--routing support-->
+
+
+    <!--grid library-->
+    <script src="lib/uiGrid/ui-grid.js"></script>
+
     <!--graph library-->
     <script src="lib/d3/d3.js"></script>
     <script src="lib/d3/nv.d3.js"></script>
-    <script src="lib/d3/angularjs-nvd3-directives.js"></script>
+    <script src="lib/d3/angular-nvd3.js"></script>
+    <script src = "lib/d3/angularjs-nvd3-directives.js" ></script>
+
+
+    <!--common: file uploader-->
+    <script src = "lib/uploader/ng-file-upload.js" ></script>
+
 
     <script src="js/services.js"></script>
-    <script src="js/vizTest.js"></script>
+    <script src="js/demo.js"></script>
 
 
 
 </head>
-<body ng-app="vizTestApp">
+<body ng-controller="demoController">
 
 
     <section class="alert-warning">
@@ -45,40 +48,56 @@
     </section>
 
 
-    <section class="pivot">
 
-         <div class="container-fluid">
-         <div class="row">
-             <div class="col-lg-offset-1 col-md-10" id = 'pivContainer'> viz here</div>
-
-
-         </div>
-         </div>
+    <button ng-controller="uploaderController" ngf-select ng-model="upFile" class="btn btn-primary"> click me for uploading data</button>
+    <button ng-click="updateData('json')" class="btn btn-primary"> click me for raw json</button>
+    <button ng-click="updateData('grid')" class="btn btn-primary"> click me for grid display</button>
+    <button ng-click="updateData('graph')" class="btn btn-primary"> click me for graph display</button>
 
 
-    </section>
+    <hr>
 
 
-    <div ng-controller="vizController">
-        <nvd3-cumulative-line-chart
-                data="exampleData"
-                id="showYAxisExample"
-                width="550"
-                height="350"
-                showXAxis="true"
-                showYAxis="false"
-                tooltips="true"
-                showlegend="true"
-                interactive="true"
-                useinteractiveguideline = 'true'
-                x="xFunction()"
-                y="yFunction()"
-                xAxisTickFormat="xAxisTickFormatFunction()"
-                margin="{left:70,top:70,bottom:70,right:150}">
-            <svg></svg>
-        </nvd3-cumulative-line-chart>
+    <!--<section class="pivot">-->
+
+         <!--<div class="container-fluid">-->
+         <!--<div class="row">-->
+             <!--<div class="col-lg-offset-1 col-md-10" id = 'pivContainer'> viz here</div>-->
+
+
+         <!--</div>-->
+         <!--</div>-->
+
+
+    <!--</section>-->
+
+
+    <!--<div ng-controller="vizController">-->
+        <!--<nvd3-cumulative-line-chart-->
+                <!--data="exampleData"-->
+                <!--id="showYAxisExample"-->
+                <!--width="550"-->
+                <!--height="350"-->
+                <!--showXAxis="true"-->
+                <!--showYAxis="false"-->
+                <!--tooltips="true"-->
+                <!--showlegend="true"-->
+                <!--interactive="true"-->
+                <!--useinteractiveguideline = 'true'-->
+                <!--x="xFunction()"-->
+                <!--y="yFunction()"-->
+                <!--xAxisTickFormat="xAxisTickFormatFunction()"-->
+                <!--margin="{left:70,top:70,bottom:70,right:150}">-->
+            <!--<svg></svg>-->
+        <!--</nvd3-cumulative-line-chart>-->
+    <!--</div>-->
+    <!--<div ng-controller="graphViewController">-->
+
+    <div ng-controller="graphViewController">
+        <div class="angular-nvd3-chart-container" ng-repeat='type in graphTypes'>
+            <draw-graph c-type = '{{type}}' > GRAPH PLACEHOLDER </draw-graph>
+        </div>
     </div>
-
 
 
 </body>
