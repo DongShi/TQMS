@@ -359,7 +359,6 @@ demoApp.directive('drawGraph', function() {
        };
 
        return {
-          scope: {},
           template: '<nvd3 options ="options" data="graphData"> </nvd3>',
           restrict: 'AE',
           replace: true,
