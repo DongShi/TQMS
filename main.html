@@ -37,13 +37,6 @@
     <script src="js/services.js"></script>
     <script src="js/demo.js"></script>
 
-    <!--<script src="lib/angular-route.js"></script>-->
-    <!--<script src="lib/angular-resource.js"></script>-->
-    <!--<script src="js/services.js"></script>-->
-    <!--<script src="js/controllers.js"></script>-->
-    <!--<script src="js/filters.js"></script>-->
-    <!--<script src="js/app.js"></script>-->
-
 
 </head>
 
@@ -52,8 +45,8 @@
 
 
 <button ng-controller="uploaderController" ngf-select ng-model="upFile" class="btn btn-primary"> click me for uploading data</button>
-<button ng-click="updateData('json')" class="btn btn-primary"> click me for raw json</button>
-<button ng-click="updateData('grid')" class="btn btn-primary"> click me for grid display</button>
+<button ng-init = "countJsonTap = 1" ng-click="updateData('json', countJsonTap)"class="btn btn-primary"> click me for raw json</button>
+<button ng-init = "countGridTap = 1" ng-click="updateData('grid', countGridTap)" class="btn btn-primary"> click me for grid display</button>
 <button ng-click="updateData('graph')" class="btn btn-primary"> click me for graph display</button>
 
 
@@ -67,7 +60,7 @@
         <div class="raw-json col-md-offset-1 col-md-10">
 
             <ul>
-                <li ng-repeat="ele in jsonData track by ele.id">
+                <li ng-repeat="ele in jsonData track by $index">
                     {{ele | json}}
                 </li>
             </ul>
@@ -81,22 +74,10 @@
 
 
         <!--grid display example-->
-        <div class="col-md-offset-1 col-md-10 ui-grid" ui-grid="{data: gridData}">
+        <!--<div class="col-md-offset-1 col-md-10 ui-grid" ui-grid="{data: gridData}">-->
+        <div class="col-md-offset-1 col-md-10 ui-grid" ui-grid="gridOptions">
         </div>
 
-
-
-
-        <!--&lt;!&ndash;simple directive pagination examples&ndash;&gt;-->
-        <!--<pagination num-pages = "tasks.pageCount" current-page = "tasks.currentPage" on-select-page = "sayHello(pageX)">-->
-        <!--</pagination>-->
-
-        <!--&lt;!&ndash;simple directive transit examples&ndash;&gt;-->
-        <!--<div class="col-md-offset-1 col-md-10" simple-transit>-->
-
-        <!--Welcome to Beijing!-->
-
-        <!--</div>-->
 
 
     </div>

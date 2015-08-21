@@ -6,7 +6,7 @@
  */
 var demoApp = angular.module('demoApp', ['demoService', 'ui.grid', 'nvd3', 'ngFileUpload']);
 
-demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http) {
+demoApp.controller('demoController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
 
     $scope.tasks = {pageCount: 10, currentPage: 4};
 
@@ -14,6 +14,8 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
         {message: "warning1", type: "info"},
         {message: "attention", type: "info"}
     ];
+
+    $scope.gridOptions = {data:[]};
 
     $scope.closeAlert = function (i) {
         i = Math.max(0, i);
@@ -23,15 +25,20 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
 
     };
 
-    $scope.updateData = function (displayMode) {
+    $scope.updateData = function (displayMode, tapCount) {
 
         var _URL = "asset/phones/phones.json";
         var dataTag = displayMode + 'Data';
+        var suffix = tapCount % 2;
 
         var parseURL = function (displayMode) {
             switch (displayMode) {
-                case 'grid':
-                    _URL = "asset/phones/grid-data.json";
+                case 'grid':  //testing.
+                    if (suffix === 0) {
+                        _URL = "asset/phones/grid-data.json";
+                    } else {
+                        _URL = "asset/phones/grid-data1.json";
+                    }
                     break;
 
                 case 'graph':
@@ -52,11 +59,36 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
             return $http.get(_URL).success(function (data) {
 
                 var resultData = data;
-                $scope[dataTag] = resultData;
+                if (displayMode === 'grid') {
+                    $scope[dataTag] = resultData;
+                    $scope.gridOptions.data = [];
 
-            }).error(function () {
+                    $timeout(function () {
 
+                        $scope.gridOptions.data = $scope[dataTag];
+                        var columnDefs = [];
+                        if (resultData.length) {
+
+
+                            var oneRowData = resultData[0],
+                                keys = Object.keys(oneRowData);
+
+                            for (var i = 0; i < keys.length; i++) {
+                                columnDefs.push({name: keys[i]});
+                            }
+
+                        }
+                        $scope.gridOptions.columnDefs = columnDefs
+                    });
+
+                } else {
+                    $scope[dataTag] = resultData;
+                }
+
+            }).error(function (data, stauts, header) {
+                window.console.log(data);
             });
+
         };
 
         update();

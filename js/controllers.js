@@ -64,9 +64,6 @@ controllerModule.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http
     }, function() {
             $location.url('/phones');
         }
-    ).otherwise(function() {
-            window.alert(".......");
-        }
     );
 
 
