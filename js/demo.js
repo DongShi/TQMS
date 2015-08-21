@@ -6,7 +6,7 @@
  */
 var demoApp = angular.module('demoApp', ['demoService', 'ui.grid', 'nvd3', 'ngFileUpload']);
 
-demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http) {
+demoApp.controller('demoController', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
 
     $scope.tasks = {pageCount: 10, currentPage: 4};
 
@@ -14,6 +14,8 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
         {message: "warning1", type: "info"},
         {message: "attention", type: "info"}
     ];
+
+    $scope.gridOptions = {data:[]};
 
     $scope.closeAlert = function (i) {
         i = Math.max(0, i);
@@ -23,15 +25,20 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
 
     };
 
-    $scope.updateData = function (displayMode) {
+    $scope.updateData = function (displayMode, tapCount) {
 
         var _URL = "asset/phones/phones.json";
         var dataTag = displayMode + 'Data';
+        var suffix = tapCount % 2;
 
         var parseURL = function (displayMode) {
             switch (displayMode) {
-                case 'grid':
-                    _URL = "asset/phones/grid-data.json";
+                case 'grid':  //testing.
+                    if (suffix === 0) {
+                        _URL = "asset/phones/grid-data.json";
+                    } else {
+                        _URL = "asset/phones/grid-data1.json";
+                    }
                     break;
 
                 case 'graph':
@@ -52,11 +59,36 @@ demoApp.controller('demoController', ['$scope', '$http', function ($scope, $http
             return $http.get(_URL).success(function (data) {
 
                 var resultData = data;
-                $scope[dataTag] = resultData;
+                if (displayMode === 'grid') {
+                    $scope[dataTag] = resultData;
+                    $scope.gridOptions.data = [];
 
-            }).error(function () {
+                    $timeout(function () {
 
+                        $scope.gridOptions.data = $scope[dataTag];
+                        var columnDefs = [];
+                        if (resultData.length) {
+
+
+                            var oneRowData = resultData[0],
+                                keys = Object.keys(oneRowData);
+
+                            for (var i = 0; i < keys.length; i++) {
+                                columnDefs.push({name: keys[i]});
+                            }
+
+                        }
+                        $scope.gridOptions.columnDefs = columnDefs
+                    });
+
+                } else {
+                    $scope[dataTag] = resultData;
+                }
+
+            }).error(function (data, stauts, header) {
+                window.console.log(data);
             });
+
         };
 
         update();
@@ -282,15 +314,8 @@ demoApp.controller('graphViewController', ['$scope', function($scope){
     };
 
 
-    $scope.yScaling = function() {
-        return function(d) {
-            return d[1] / 100;
-        }
-    };
-
-
     $scope.graphTypes = [
-        'map', 'line_stack', 'bar_cluster', 'pie', 'scatter', 'bubble'
+        'lineChart', 'cumulativeLineChart', 'multiBarHorizontalChart', 'stackedAreaChart', 'scatter', 'pieChart'
     ];
 
 
@@ -316,7 +341,7 @@ demoApp.controller('graphViewController', ['$scope', function($scope){
             xAxis: {
                 axisLabel: 'X Axis',
                 tickFormat: function(d) {
-                    return d3.time.format('%m/%d/%y')(new Date(d))
+                    return d3.time.format('%m/%d/%y')(new Date(d));
                 },
                 showMaxMin: false,
                 staggerLabels: true
@@ -332,24 +357,46 @@ demoApp.controller('graphViewController', ['$scope', function($scope){
         }
     };
 
+
+    this.changeGraphType = function(type, obj) {
+        if (!!obj === false) {
+            obj = $scope.options;
+        }
+
+        if (obj.chart) {
+            obj.chart.type = type;
+        }
+    };
+
+
+    this.getGraphOptions = function(obj) {
+        obj = obj || {};
+        angular.merge(obj, $scope.options);
+        return obj;
+    };
 }]);
 
 
 
 demoApp.directive('drawGraph', function() {
-       var linkFn = function(element, scope, attributes) {
+       var linkFn = function(scope, element, attributes, controller) {
+           if (!!attributes.cType) {
+               controller.changeGraphType(attributes.cType);  //this will work
+
+
+//               scope.options = controller.getGraphOptions();
+//               controller.changeGraphType(attributes.cType, scope.options);
+           }
 
        };
+
        return {
+          template: '<nvd3 options ="options" data="graphData"> </nvd3>',
           restrict: 'AE',
+          replace: true,
           controller: 'graphViewController',
           link: linkFn
-
-
-
        };
-
-
 
 });
 

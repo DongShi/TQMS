@@ -1,0 +1,193 @@
+[{
+    "State": "Alabama",
+    "Customer Gender": "F",
+    "Profit": "174.46"
+}, {
+    "State": "Arizona",
+    "Customer Gender": "M",
+    "Profit": "64.679"
+}, {
+    "State": "Arkansas",
+    "Customer Gender": "M",
+    "Profit": "39.703"
+}, {
+    "State": "California",
+    "Customer Gender": "F",
+    "Profit": "583.886"
+}, {
+    "State": "Colorado",
+    "Customer Gender": "M",
+    "Profit": "76.699"
+}, {
+    "State": "Connecticut",
+    "Customer Gender": "M",
+    "Profit": "170.938"
+}, {
+    "State": "Delaware",
+    "Customer Gender": "M",
+    "Profit": "9.105"
+}, {
+    "State": "Florida",
+    "Customer Gender": "F",
+    "Profit": "223.699"
+}, {
+    "State": "Georgia",
+    "Customer Gender": "M",
+    "Profit": "73.789"
+}, {
+    "State": "Idaho",
+    "Customer Gender": "M",
+    "Profit": "7.229"
+}, {
+    "State": "Illinois",
+    "Customer Gender": "M",
+    "Profit": "332.081"
+}, {
+    "State": "Indiana",
+    "Customer Gender": "F",
+    "Profit": "85.479"
+}, {
+    "State": "Iowa",
+    "Customer Gender": "M",
+    "Profit": "68.458"
+}, {
+    "State": "Kansas",
+    "Customer Gender": "M",
+    "Profit": "32.164"
+}, {
+    "State": "Kentucky",
+    "Customer Gender": "M",
+    "Profit": "31.928"
+}, {
+    "State": "Louisiana",
+    "Customer Gender": "M",
+    "Profit": "70.003"
+}, {
+    "State": "Maine",
+    "Customer Gender": "F",
+    "Profit": "30.668"
+}, {
+    "State": "Maryland",
+    "Customer Gender": "M",
+    "Profit": "136.418"
+}, {
+    "State": "Massachusetts",
+    "Customer Gender": "M",
+    "Profit": "143.866"
+}, {
+    "State": "Michigan",
+    "Customer Gender": "M",
+    "Profit": "161.239"
+}, {
+    "State": "Minnesota",
+    "Customer Gender": "M",
+    "Profit": "70.886"
+}, {
+    "State": "Mississippi",
+    "Customer Gender": "F",
+    "Profit": "65.577"
+}, {
+    "State": "Missouri",
+    "Customer Gender": "F",
+    "Profit": "96.862"
+}, {
+    "State": "Montana",
+    "Customer Gender": "M",
+    "Profit": "32.423"
+}, {
+    "State": "Nebraska",
+    "Customer Gender": "M",
+    "Profit": "21.21"
+}, {
+    "State": "Nevada",
+    "Customer Gender": "M",
+    "Profit": "34.549"
+}, {
+    "State": "New Hampshire",
+    "Customer Gender": "F",
+    "Profit": "32.142"
+}, {
+    "State": "New Jersey",
+    "Customer Gender": "M",
+    "Profit": "293.465"
+}, {
+    "State": "New Mexico",
+    "Customer Gender": "F",
+    "Profit": "15.575"
+}, {
+    "State": "New York",
+    "Customer Gender": "M",
+    "Profit": "430.702"
+}, {
+    "State": "North Carolina",
+    "Customer Gender": "M",
+    "Profit": "71.396"
+}, {
+    "State": "North Dakota",
+    "Customer Gender": "F",
+    "Profit": "8.501"
+}, {
+    "State": "Ohio",
+    "Customer Gender": "M",
+    "Profit": "148.985"
+}, {
+    "State": "Oklahoma",
+    "Customer Gender": "M",
+    "Profit": "42.215"
+}, {
+    "State": "Oregon",
+    "Customer Gender": "F",
+    "Profit": "43.991"
+}, {
+    "State": "Pennsylvania",
+    "Customer Gender": "M",
+    "Profit": "280.82"
+}, {
+    "State": "Rhode Island",
+    "Customer Gender": "F",
+    "Profit": "49.346"
+}, {
+    "State": "South Carolina",
+    "Customer Gender": "M",
+    "Profit": "82.086"
+}, {
+    "State": "Tennessee",
+    "Customer Gender": "M",
+    "Profit": "119.263"
+}, {
+    "State": "Texas",
+    "Customer Gender": "M",
+    "Profit": "332.624"
+}, {
+    "State": "Utah",
+    "Customer Gender": "F",
+    "Profit": "16.277"
+}, {
+    "State": "Vermont",
+    "Customer Gender": "F",
+    "Profit": "34.753"
+}, {
+    "State": "Virginia",
+    "Customer Gender": "M",
+    "Profit": "102.216"
+}, {
+    "State": "Washington",
+    "Customer Gender": "M",
+    "Profit": "78.786"
+}, {
+    "State": "West Virginia",
+    "Customer Gender": "F",
+    "Profit": "35.436"
+}, {
+    "State": "Wisconsin",
+    "Customer Gender": "F",
+    "Profit": "131.31"
+}, {
+    "State": "Wyoming",
+    "Customer Gender": "F",
+    "Profit": "8.48"
+}, {
+    "State": "District of Columbia",
+    "Customer Gender": "M",
+    "Profit": "97.259"
+}]
